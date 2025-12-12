@@ -1,0 +1,71 @@
+═══════════════════════════════════════════════════════════
+    HAND GESTURE DRAWING PAD - HOW TO USE
+═══════════════════════════════════════════════════════════
+
+📌 BASIC CONTROLS:
+------------------
+• Press 'Q' key to EXIT the app
+
+
+🎨 HAND GESTURES (Improved Accuracy!):
+--------------------------------------
+
+1. ✌️ CURSOR MODE (Index + Middle fingers):
+   - Raise ONLY index and middle fingers
+   - Keep thumb, ring, and pinky DOWN
+   - A green cursor appears
+   - Hover over buttons for 2 seconds to click
+   - Automatically activates when you use this gesture
+
+2. 👆 DRAW MODE (ONLY Index finger):
+   - Raise ONLY your index finger
+   - Keep ALL other fingers DOWN
+   - Move to draw lines
+   - Circle appears at fingertip
+
+3. 🤘 STANDBY MODE (Index + Pinky):
+   - Raise index and pinky
+   - Keep thumb, middle, ring DOWN
+   - Shows a line between fingers
+   - Pauses drawing
+
+4. ✊ CLEAR CANVAS (Closed fist):
+   - Close ALL fingers into a fist
+   - Clears entire drawing
+
+5. 🤏 ADJUST BRUSH SIZE (Thumb + Index):
+   - Raise thumb and index
+   - Keep middle, ring, pinky DOWN
+   - Move fingers apart/together to adjust size
+   - Raise PINKY to CONFIRM the size
+
+
+⌨️ KEYBOARD SHORTCUTS (Still Available!):
+-----------------------------------------
+• 'C' = Toggle Cursor Mode ON/OFF
+• 'E' = Toggle Eraser ON/OFF
+• 'U' = Undo last stroke
+• 'X' = Clear entire canvas
+• 'Q' = Quit app
+
+🎨 COLOR SELECTION (Keyboard):
+------------------------------
+• '1' = Pink
+• '2' = Blue
+• '3' = Green
+• '4' = Orange
+• '5' = Purple
+• '6' = White
+
+
+💡 TIPS:
+--------
+• Good lighting helps hand tracking
+• Keep your hand flat and visible
+• Make CLEAR finger positions (strict detection!)
+• Use keyboard shortcuts for faster control
+• The sidebar shows your current brush color
+
+
+═══════════════════════════════════════════════════════════
+

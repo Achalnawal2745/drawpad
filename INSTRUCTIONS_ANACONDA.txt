@@ -1,0 +1,42 @@
+
+HOW TO RUN WITH ANACONDA
+========================
+
+If you have Anaconda installed, this is the EASIEST way to run the app!
+You don't need to download anything else.
+
+1. Open "Anaconda Prompt" (Search for it in Start Menu).
+
+2. Type these commands one by one (press Enter after each):
+
+   Command 1: Create the environment with Python 3.10
+   --------------------------------------------------
+   conda create -n drawpad python=3.10 -y
+
+
+   Command 2: Activate the environment
+   -----------------------------------
+   conda activate drawpad
+
+
+   Command 3: Go to the folder
+   ---------------------------
+   cd /d e:\auto\drawpad\python_app
+
+
+   Command 4: Install libraries
+   ----------------------------
+   pip install -r requirements.txt
+
+
+   Command 5: Run the App!
+   -----------------------
+   python main.py
+
+
+---------------------------------------------------
+NEXT TIME YOU WANT TO RUN IT:
+1. Open Anaconda Prompt
+2. conda activate drawpad
+3. cd /d e:\auto\drawpad\python_app
+4. python main.py
