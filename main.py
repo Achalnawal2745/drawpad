@@ -78,6 +78,11 @@ hover_start_time = 0
 hovered_button = None
 DWELL_TIME = 2.0  # Seconds
 
+# Cooldown after dwell click (prevents mode flickering)
+dwell_click_cooldown = False
+dwell_cooldown_start = 0
+DWELL_COOLDOWN_TIME = 1.0  # 1 second pause after clicking
+
 # --- MEDIAPIPE SETUP ---
 mp_hands = mp.solutions.hands
 hands = mp_hands.Hands(min_detection_confidence=0.8, min_tracking_confidence=0.7, max_num_hands=1)
@@ -225,6 +230,15 @@ while True:
                     else:
                         fingers.append(0)
                 
+                # Check cooldown first
+                if dwell_click_cooldown:
+                    elapsed_cooldown = (datetime.now() - dwell_cooldown_start).total_seconds()
+                    if elapsed_cooldown > DWELL_COOLDOWN_TIME:
+                        dwell_click_cooldown = False
+                    else:
+                        # Skip gesture processing during cooldown
+                        continue
+                
                 # --- GESTURE MODES ---
                 
                 ## CURSOR MODE - Index + Middle fingers up (replaces Selection Mode)
@@ -255,6 +269,11 @@ while True:
                             hovering_any = True
                             btn.is_hovered = True
                             
+                            # VISUAL SELECTION RECTANGLE (like web version)
+                            cv2.rectangle(img, (btn.x - 3, btn.y - 3), 
+                                        (btn.x + btn.w + 3, btn.y + btn.h + 3), 
+                                        (0, 255, 136), 3)
+                            
                             if hovered_button != btn:
                                 hovered_button = btn
                                 hover_start_time = datetime.now()
@@ -271,6 +290,10 @@ while True:
                                     handle_click(btn)
                                     hover_start_time = datetime.now()
                                     cv2.circle(img, (smooth_x, smooth_y), 30, (255, 255, 255), -1)
+                                    
+                                    # ACTIVATE COOLDOWN (prevents mode flickering)
+                                    dwell_click_cooldown = True
+                                    dwell_cooldown_start = datetime.now()
                         else:
                             btn.is_hovered = False
                     
