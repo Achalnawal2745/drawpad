@@ -195,7 +195,11 @@ while True:
     
     # Check gestures
     if results.multi_hand_landmarks:
-        for landmarks in results.multi_hand_landmarks:
+        # FIX: "Ghost Hand" Glitch - Only process the first hand
+        # for landmarks in results.multi_hand_landmarks:
+        # Instead of looping through all hands, we take the first one
+        if len(results.multi_hand_landmarks) > 0:
+            landmarks = results.multi_hand_landmarks[0]
             # Draw landmarks
             mp_draw.draw_landmarks(img, landmarks, mp_hands.HAND_CONNECTIONS)
             
@@ -313,18 +317,27 @@ while True:
                         smooth_x = int(smooth_x * SMOOTHING + x1 * (1 - SMOOTHING))
                         smooth_y = int(smooth_y * SMOOTHING + y1 * (1 - SMOOTHING))
                     
-                    # Draw Mode
-                    if is_drawing == False:
-                        save_state()
-                        is_drawing = True
-                        prev_x, prev_y = smooth_x, smooth_y
-                    
-                    if is_eraser:
-                        cv2.line(img, (prev_x, prev_y), (smooth_x, smooth_y), (0,0,0), brush_size)
-                        cv2.line(imgCanvas, (prev_x, prev_y), (smooth_x, smooth_y), (0,0,0), brush_size)
+                    # FIX: Drawing Over Sidebar Bug
+                    # Only draw if outside the sidebar area
+                    if smooth_x > SIDEBAR_WIDTH:
+                        if is_drawing == False:
+                            save_state()
+                            is_drawing = True
+                            prev_x, prev_y = smooth_x, smooth_y
+                        
+                        # Extra Safety: verify prev_x is not 0
+                        if prev_x == 0 and prev_y == 0:
+                             prev_x, prev_y = smooth_x, smooth_y
+                        
+                        if is_eraser:
+                            cv2.line(img, (prev_x, prev_y), (smooth_x, smooth_y), (0,0,0), brush_size)
+                            cv2.line(imgCanvas, (prev_x, prev_y), (smooth_x, smooth_y), (0,0,0), brush_size)
+                        else:
+                            cv2.line(img, (prev_x, prev_y), (smooth_x, smooth_y), current_color, brush_size)
+                            cv2.line(imgCanvas, (prev_x, prev_y), (smooth_x, smooth_y), current_color, brush_size)
                     else:
-                        cv2.line(img, (prev_x, prev_y), (smooth_x, smooth_y), current_color, brush_size)
-                        cv2.line(imgCanvas, (prev_x, prev_y), (smooth_x, smooth_y), current_color, brush_size)
+                        is_drawing = False
+                        prev_x, prev_y = 0, 0
                     
                     prev_x, prev_y = smooth_x, smooth_y
                     
@@ -368,6 +381,12 @@ while True:
                 else:
                     is_drawing = False
                     prev_x, prev_y = 0, 0
+
+
+    # FIX: "Shoot Out" Glitch - Reset state if no hand detected
+    else:
+        is_drawing = False
+        prev_x, prev_y = 0, 0
 
     # Draw UI
     draw_ui(img)
