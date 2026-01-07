@@ -21,7 +21,7 @@ You don't need to download anything else.
 
    Command 3: Go to the folder
    ---------------------------
-   cd /d e:\auto\drawpad\python_app
+   cd /d [YOUR_PROJECT_FOLDER_PATH]
 
 
    Command 4: Install libraries
@@ -38,5 +38,5 @@ You don't need to download anything else.
 NEXT TIME YOU WANT TO RUN IT:
 1. Open Anaconda Prompt
 2. conda activate drawpad
-3. cd /d e:\auto\drawpad\python_app
+3. cd /d [YOUR_PROJECT_FOLDER_PATH]
 4. python main.py

@@ -76,7 +76,7 @@ prev_x, prev_y = 0, 0
 # Dwell Click vars
 hover_start_time = 0
 hovered_button = None
-DWELL_TIME = 2.0  # Seconds
+DWELL_TIME = 1.0  # Seconds
 
 # Cooldown after dwell click (prevents mode flickering)
 dwell_click_cooldown = False
@@ -173,6 +173,16 @@ def handle_click(btn):
 cap = cv2.VideoCapture(0)
 cap.set(3, WIDTH)
 cap.set(4, HEIGHT)
+
+# READ BACK the actual resolution the camera accepted
+real_width = int(cap.get(3))
+real_height = int(cap.get(4))
+
+# If the camera couldn't do 1280x720, resize our canvas to match IT
+if real_width != WIDTH or real_height != HEIGHT:
+    print(f"Warning: Camera resolution is {real_width}x{real_height}. Adjusting canvas...")
+    WIDTH, HEIGHT = real_width, real_height
+    imgCanvas = np.zeros((HEIGHT, WIDTH, 3), np.uint8) # Re-create canvas
 
 print("═══════════════════════════════════════")
 print("    Hand Gesture Drawing Pad")
