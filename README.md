@@ -7,7 +7,7 @@ A real-time hand gesture-controlled drawing application using **OpenCV** and **M
 
 - 🖐️ **Advanced Hand Gesture Recognition** - 5 distinct gesture modes
 - 🎨 **6 Color Options** - Pink, Blue, Green, Orange, Purple, White
-- 🖱️ **Cursor Mode** - Control UI with hand gestures (2-second dwell click)
+- 🖱️ **Cursor Mode** - Control UI with hand gestures (1-second dwell click)
 - 🧹 **Eraser Tool** - Toggle between drawing and erasing
 - ↩️ **Undo Functionality** - Undo up to 20 strokes
 - 📏 **Adjustable Brush Size** - Gesture-based thickness control
@@ -91,7 +91,7 @@ python main.py
 1. ✌️ Raise **Index + Middle** fingers (keep others down)
 2. A **green cursor** appears on screen
 3. Move your hand to position the cursor over a button
-4. **Hold still** for 2 seconds
+4. **Hold still** for 1 second
 5. Watch the **green ring** fill up around the cursor
 6. Button **auto-clicks** when ring completes!
 
@@ -146,5 +146,17 @@ cap = cv2.VideoCapture(0)  # Try 0, 1, or 2
 - Move closer to camera
 - Ensure hand is fully visible
 - Check camera permissions
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome! Feel free to check the issues page.
+
+## 👤 Author
+
+Created with ❤️ using OpenCV and MediaPipe
 
 
